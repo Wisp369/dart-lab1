@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,19 +30,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final stopwatch = Stopwatch();
-
-  void startStopwatch() {
+    int _time = 0;
+    void _initTimer() {
+      _time = 0;
+  Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {
     setState(() {
-      stopwatch.start();
+          _time++;
     });
-  }
+  });
+    }
 
-  void stopStopwatch() {
-    setState(() {
-      stopwatch.stop();
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: .center,
           children: [
             const Text("Timer:", style: TextStyle(fontSize: 50)), 
-            Text('$stopwatch', style: TextStyle(fontSize: 45), selectionColor: Theme.of(context).colorScheme.inversePrimary)
+            Text('$_time', style: TextStyle(fontSize: 45), selectionColor: Theme.of(context).colorScheme.inversePrimary)
             ],
         ),
       ),
@@ -58,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: .center,
         children: [
           FloatingActionButton(
-            onPressed: startStopwatch,
+            onPressed: _initTimer,
             tooltip: 'Start Timer',
             child: const Icon(Icons.play_arrow),
           ),
