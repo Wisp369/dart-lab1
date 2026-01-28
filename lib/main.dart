@@ -33,12 +33,20 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.blue, title: Text(widget.title)),
       body: Center(
-        child: Column(mainAxisAlignment: .center, children: []),
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [const Text("Timer:"), Text("null")],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Start Timer',
-        child: const Icon(Icons.play_arrow),
+      floatingActionButton: Row(
+        mainAxisAlignment: .center,
+        children: [
+          FloatingActionButton(
+            onPressed: null,
+            tooltip: 'Start Timer',
+            child: const Icon(Icons.play_arrow),
+          ),
+        ],
       ),
     );
   }
